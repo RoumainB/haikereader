@@ -1,0 +1,91 @@
+'use strict';
+const Alexa = require('alexa-sdk');
+const APP_ID = undefined;
+
+/***********
+Data: Customize the data below as you please.
+***********/
+
+const SKILL_NAME = "Haiku Reader";
+const GET_HAIKU_MESSAGE = "I have a haiku for you: ";
+const HELP_MESSAGE = "You can say tell me a haiku... or not.";
+const HELP_REPROMPT = "I have some awesome haikus in my repertoire. Just ask me to read one to you.";
+const STOP_MESSAGE = "See you later!";
+
+// Each haiku is written within two single backticks and all haikus are seperated by commas.
+const data = [
+  `I am very sick.
+I should have stopped eating.
+I will regret it`,
+
+  `Even if it‘s nice.
+<amazon:effect name="whispered">Please never eat yellow snow</amazon:effect>.
+You would be surprised`,
+
+  `Open wide your eyes.
+Close them and take a breathe.
+Open them and go`,
+
+`Start an online course.
+Give everything you have.
+Take holiday soon`,
+
+`Winter is coming.
+Darkness will accompany. 
+Forget sun for now`,
+
+`It is Christmas time.
+Spend good time with family.
+Please don‘t eat too much`,
+
+`Write a haiku is
+Not a very simple task.
+But I did it well`,
+
+`A chair full of books.
+A table full of books too.
+He <emphasis level="strong"> likes </emphasis> reading books`,
+
+`At noon for a walk.
+With a good friend you will talk.
+Your best friend he‘ll be`,
+
+`A glass of red wine.
+A cigar of havanna.
+Say it: this is life.`
+];
+
+/***********
+Execution Code: Avoid editing the code below if you don't know JavaScript.
+***********/
+
+const handlers = {
+  'NewSession': function(){
+    this.emit('GetHaikuIntent');
+  },
+  'GetHaikuIntent': function(){
+    const randomHaikuIndex = Math.floor(Math.random() * data.length);
+    const randomHaiku = data[randomHaikuIndex];
+    const speechOutput = GET_HAIKU_MESSAGE + randomHaiku;
+    this.emit(':tellWithCard', speechOutput, SKILL_NAME, randomHaiku);
+  },
+  'AMAZON.HelpIntent': function(){
+    this.emit(':ask', HELP_MESSAGE, HELP_REPROMPT);
+  },
+  'AMAZON.CancelIntent': function(){
+    this.emit(':tell', STOP_MESSAGE);
+  },
+  'AMAZON.StopIntent': function(){
+    this.emit(':tell', STOP_MESSAGE);
+  },
+  'Unhandled': function(){
+    this.emit(':tell', HELP_MESSAGE)
+  }
+};
+
+exports.handler = (event, context, callback) => {
+  const alexa = Alexa.handler(event, context);
+  alexa.APP_ID = APP_ID;
+  alexa.registerHandlers(handlers);
+  alexa.execute();
+};
