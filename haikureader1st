@@ -14,44 +14,44 @@ const STOP_MESSAGE = "See you later!";
 
 // Each haiku is written within two single backticks and all haikus are seperated by commas.
 const data = [
-  `I am very sick
-I should have stopped eating
+  `I am very sick.
+I should have stopped eating.
 I will regret it`,
 
-  `Even if it‘s nice
-Please never eat yellow snow
+  `Even if it‘s nice.
+Please never eat yellow snow.
 You would be surprised`,
 
-  `Open wide your eyes
-Close them and take a breathe
+  `Open wide your eyes.
+Close them and take a breathe.
 Open them and go`,
 
-`Start an online course
-Give everything you have
+`Start an online course.
+Give everything you have.
 Take holiday soon`,
 
-`Winter is coming
-Darkness will accompany 
+`Winter is coming.
+Darkness will accompany. 
 Forget sun for now`,
 
-`It is Christmas time
-Spend good time with family
+`It is Christmas time.
+Spend good time with family.
 Please don‘t eat too much`,
 
 `Write a haiku is
-Not a very simple task
+Not a very simple task.
 But I did it well`,
 
-`A chair full of books
-A table full of books too
+`A chair full of books.
+A table full of books too.
 He likes reading books`,
 
-`At noon for a walk
-With a good friend you will talk
+`At noon for a walk.
+With a good friend you will talk.
 Your best friend he‘ll be`,
 
-`A glass of red wine
-A cigar of havanna
+`A glass of red wine.
+A cigar of havanna.
 Say it: this is life.`
 ];
 
@@ -89,3 +89,4 @@ exports.handler = (event, context, callback) => {
   alexa.registerHandlers(handlers);
   alexa.execute();
 };
+  
